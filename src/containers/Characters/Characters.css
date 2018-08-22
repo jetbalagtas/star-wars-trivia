@@ -1,0 +1,12 @@
+.Characters {
+  width: 50%;
+  border: 1px solid yellow;
+  padding: 10px;
+  margin: 0 10px 0 20px;
+  box-sizing: border-box;
+}
+
+.Characters .Character {
+  list-style: none;
+  padding: 0;
+}
