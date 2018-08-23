@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Character from '../../components/Character/Character';
-import axios from '../../axios-movies';
+import axios from '../../axios-swapi';
 import classes from './Characters.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
@@ -12,7 +12,7 @@ class Characters extends Component {
   }
 
   componentDidMount () {
-    axios.get('?format=json')
+    axios.get('people/?format=json')
     .then(res => {
       console.log(res);
       const fetchedCharacters = [];
@@ -28,7 +28,7 @@ class Characters extends Component {
     .catch(err => {
       this.setState({loading: false});
     });
-  }
+  };
 
   render () {
     let characters = <Spinner />
@@ -36,7 +36,7 @@ class Characters extends Component {
       characters = this.state.characters.map(char => (
         <Character
           key={char.id}
-          characters={char.name} />
+          character={char.name} />
       ));
     }
     return (
