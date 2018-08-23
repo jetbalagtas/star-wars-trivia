@@ -6,7 +6,7 @@ const character = (props) => {
   console.log('props: ', props);
   return (
     <div className={classes.Character}>
-      <h2>{props.character}</h2>
+      <h2 id={props.character.key}>{props.character.name}</h2>
     </div>
   );
 };
