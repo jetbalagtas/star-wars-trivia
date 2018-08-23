@@ -1,44 +1,33 @@
 import React, { Component } from 'react';
 
 import Character from '../../components/Character/Character';
-import axios from '../../axios-swapi';
+// import axios from '../../axios-swapi';
 import classes from './Characters.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Characters extends Component {
   state = {
-    characters: [],
     loading: true
-  }
+  };
 
   componentDidMount () {
-    axios.get('people/?format=json')
-    .then(res => {
-      console.log(res);
-      const fetchedCharacters = [];
-      for (let key in res.data.results) {
-        fetchedCharacters.push({
-          ...res.data.results[key],
-          id: key
-        });
-      }
-      console.log('fetchedCharacters: ', fetchedCharacters);
-      this.setState({loading: false, characters: fetchedCharacters});
-    })
-    .catch(err => {
-      this.setState({loading: false});
+    this.setState({
+      characters: this.props.characters,
+      loading: false
     });
   };
 
   render () {
     let characters = <Spinner />
-    if (!this.state.loading) {
-      characters = this.state.characters.map(char => (
+    if (!this.state.loading && this.props.characters) {
+      console.log('[CharactersArr]', this.props.characters);
+      
+      characters = this.props.characters.map(char => (
         <Character
-          key={char.id}
-          character={char.name} />
+          character={char}
+          key={char.name} />
       ));
-    }
+    };
     return (
       <div className={classes.Characters}>
         <h1>Characters</h1>
@@ -49,7 +38,7 @@ class Characters extends Component {
         </ul>
       </div>
     );
-  }
-}
+  };
+};
 
 export default Characters;
