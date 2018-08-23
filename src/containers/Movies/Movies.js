@@ -7,6 +7,7 @@ class Movies extends Component {
   state = {
     title: 'Star Wars: A New Hope'
   }
+
   render () {
     return (
       <div className={classes.Movies}>
